@@ -7,7 +7,10 @@ import dataSource from './db/data-source';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRoot(dataSource.options),
+    TypeOrmModule.forRoot({
+      ...dataSource.options,
+      autoLoadEntities: true,
+    }),
     EventEmitterModule.forRoot({ global: true }),
   ],
   exports: [TypeOrmModule],

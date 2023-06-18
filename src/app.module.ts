@@ -5,9 +5,10 @@ import {
 } from '@nestjs/common';
 import { CoreModule } from './core/core.module';
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
-  imports: [CoreModule],
+  imports: [CoreModule, UserModule],
   controllers: [],
   providers: [
     {
