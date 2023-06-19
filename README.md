@@ -32,7 +32,7 @@ npm run install
 - copy env.example to .env run 
 ```bash
 cp .env.example .env
-run docker-compose up
+docker-compose up
 ```
 
 ## Folder Structure
@@ -50,6 +50,10 @@ run docker-compose up
         #for example
         npm run migration:create --name=create-user-table 
         ```
+    - to apply to database stop docker and run 
+        ```sh
+        docker-compose up
+        ``` 
 
 ## Conventional Commits and Changelog
 
