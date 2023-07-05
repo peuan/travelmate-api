@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import dataSource from './db/data-source';
+import { FirebaseAdminModule } from './firebase-admin/firebase-admin.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import dataSource from './db/data-source';
       autoLoadEntities: true,
     }),
     EventEmitterModule.forRoot({ global: true }),
+    FirebaseAdminModule,
   ],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, FirebaseAdminModule],
 })
 export class CoreModule {}
