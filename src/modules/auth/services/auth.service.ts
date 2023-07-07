@@ -36,8 +36,6 @@ export class AuthService {
         password: createFirebaseUserDto.password,
       });
 
-    console.log('newFirebaseUser :>> ', newFirebaseUser);
-
     return this.userService.createUser({
       uid: newFirebaseUser.uid,
       email: newFirebaseUser.email,
