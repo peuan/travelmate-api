@@ -16,7 +16,7 @@ export class UserService {
 
     const user = await this.userRepository.save(newUser);
     const newRole = this.roleRepository.create({
-      code: RoleEnum.CUSTOMER,
+      code: RoleEnum.USER,
       user: user,
     });
     const role = await this.roleRepository.save(newRole);
