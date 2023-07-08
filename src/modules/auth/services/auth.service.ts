@@ -13,21 +13,18 @@ export class AuthService {
 
   async createUser(createFirebaseUserDto: CreateFirebaseUserDto) {
     // validate exiting email
-    let user;
-    try {
-      user = await this.firebaseAdminService
-        .getAuth()
-        .getUserByEmail(createFirebaseUserDto.email);
-    } catch {
-      // do nothing
-    }
-
-    if (user) {
-      throw new BadRequestException({
-        code: ErrorCode.EMAIL_ALREADY_EXIST,
-        statusCode: HttpStatus.BAD_REQUEST,
+    await this.firebaseAdminService
+      .getAuth()
+      .getUserByEmail(createFirebaseUserDto.email)
+      .catch(() => undefined)
+      .then((user) => {
+        if (user) {
+          throw new BadRequestException({
+            code: ErrorCode.EMAIL_ALREADY_EXIST,
+            statusCode: HttpStatus.BAD_REQUEST,
+          });
+        }
       });
-    }
 
     const newFirebaseUser = await this.firebaseAdminService
       .getAuth()
