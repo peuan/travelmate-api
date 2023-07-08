@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
-import { UserService } from '../services/user.service';
-import { UserRepository } from '../repositories/user.repository';
+import { UserService } from 'src/modules/user/services/user.service';
+import { UserRepository } from 'src/modules/user/repositories/user.repository';
 import { DataSource } from 'typeorm';
 
 describe('UserController', () => {

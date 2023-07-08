@@ -1,6 +1,6 @@
 import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { FirebaseAdminService } from 'src/core/firebase-admin/firebase-admin.service';
-import { CreateFirebaseUserDto } from '../dtos/create-firebase-user.dto';
+import { CreateFirebaseUserDto } from 'src/modules/auth/dtos/create-firebase-user.dto';
 import { ErrorCode } from 'src/common/enums/error-code.enum';
 import { UserService } from 'src/modules/user/services/user.service';
 

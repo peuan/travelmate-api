@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { AuthService } from '../services/auth.service';
-import { CreateFirebaseUserDto } from '../dtos/create-firebase-user.dto';
+import { AuthService } from 'src/modules/auth/services/auth.service';
+import { CreateFirebaseUserDto } from 'src/modules/auth/dtos/create-firebase-user.dto';
 
 @Controller('auth')
 export class AuthController {

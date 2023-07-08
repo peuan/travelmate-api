@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from '../repositories/user.repository';
-import { CreateUserDto } from '../dtos/create-user.dto';
+import { UserRepository } from 'src/modules/user/repositories/user.repository';
+import { CreateUserDto } from 'src/modules/user/dtos/create-user.dto';
 import { Role as RoleEnum } from 'src/common/enums/role.enum';
-import { RoleRepository } from '../repositories/role.repository';
+import { RoleRepository } from 'src/modules/user/repositories/role.repository';
 
 @Injectable()
 export class UserService {
