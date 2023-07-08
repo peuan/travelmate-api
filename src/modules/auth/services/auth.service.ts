@@ -1,6 +1,6 @@
 import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { FirebaseAdminService } from 'src/core/firebase-admin/firebase-admin.service';
-import { CreateFirebaseUserDto } from '../dtos/create-firebase-user.dto';
+import { CreateFirebaseUserDto } from 'src/modules/auth/dtos/create-firebase-user.dto';
 import { ErrorCode } from 'src/common/enums/error-code.enum';
 import { UserService } from 'src/modules/user/services/user.service';
 
@@ -13,21 +13,18 @@ export class AuthService {
 
   async createUser(createFirebaseUserDto: CreateFirebaseUserDto) {
     // validate exiting email
-    let user;
-    try {
-      user = await this.firebaseAdminService
-        .getAuth()
-        .getUserByEmail(createFirebaseUserDto.email);
-    } catch {
-      // do nothing
-    }
-
-    if (user) {
-      throw new BadRequestException({
-        code: ErrorCode.EMAIL_ALREADY_EXIST,
-        statusCode: HttpStatus.BAD_REQUEST,
+    await this.firebaseAdminService
+      .getAuth()
+      .getUserByEmail(createFirebaseUserDto.email)
+      .catch(() => undefined)
+      .then((user) => {
+        if (user) {
+          throw new BadRequestException({
+            code: ErrorCode.EMAIL_ALREADY_EXIST,
+            statusCode: HttpStatus.BAD_REQUEST,
+          });
+        }
       });
-    }
 
     const newFirebaseUser = await this.firebaseAdminService
       .getAuth()

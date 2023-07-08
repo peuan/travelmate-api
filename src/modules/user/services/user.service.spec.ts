@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
-import { UserRepository } from '../repositories/user.repository';
+import { UserRepository } from 'src/modules/user/repositories/user.repository';
 import { DataSource } from 'typeorm';
 
 describe('UserService', () => {
